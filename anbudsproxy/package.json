@@ -1,0 +1,30 @@
+{
+  "name": "typescript-azure-functions",
+  "description": "",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build && func extensions install",
+    "start:host": "func start",
+    "start": "npm run start:host & npm run watch",
+    "build:production": "npm run prestart && npm prune --production",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@pnp/common": "^2.0.12",
+    "@pnp/logging": "^2.0.12",
+    "@pnp/nodejs": "^2.0.12",
+    "@pnp/nodejs-commonjs": "^2.0.12",
+    "@pnp/odata": "^2.0.12",
+    "@pnp/pnpjs-commonjs": "^2.0.12",
+    "@pnp/sp": "^2.0.12",
+    "case": "^1.6.1",
+    "sp-pnp-js": "^3.0.10",
+    "sp-pnp-node": "^3.0.1"
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.2.2",
+    "typescript": "^3.3.3"
+  }
+}
