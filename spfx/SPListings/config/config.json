@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-listings-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spListings/SpListingsWebPart.js",
+          "manifest": "./src/webparts/spListings/SpListingsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SpListingsWebPartStrings": "lib/webparts/spListings/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+  }
+}
