@@ -1,23 +1,58 @@
 import * as React from 'react';
 import { Listing } from '../../../models/models';
 import "./materialize-custom.scss";
-import {format } from 'date-fns';
+import { format } from 'date-fns';
+import Panel from '../components/Panel/Panel';
+import { PanelPosition } from '../components/Panel/Panel';
+import { PrimaryButton } from '@fluentui/react';
+import { flagInterest, getSPListings } from '../../../apiHelper';
+import { fromPairs } from 'lodash';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
+
+
 export interface IListingCardProps {
   Listing: Listing;
+  panelPosition?: PanelPosition;
+  context: WebPartContext;
 }
 
 export interface IListingCardState {
-
+  isOpen?: boolean;
+  sendMessage?: string;
 }
 
 export default class ListingCard extends React.Component<IListingCardProps, IListingCardState> {
 
   constructor(props: IListingCardProps) {
     super(props);
-    this.state = {};
+    this.state = { sendMessage: "" };
   }
+  private openApplication() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  private async sendApplication() {
+    const props = { webUrl: this.props.Listing.SPSiteUrl, 
+      listItemId: this.props.Listing.ListItemID, 
+      listId: this.props.Listing.ListId, 
+      from: this.props.context.pageContext.user.loginName, 
+      displayName: this.props.context.pageContext.user.displayName };
+    const res = await flagInterest(props);
 
+    this.setState({
+      sendMessage: "Takk for din interesse. Du vil få tilbakemelding av entreprenøren."
+    });
+
+  }
+  private onPanelClosed() {
+    this.setState({
+      isOpen: false, sendMessage: ""
+    });
+  }
   public render(): React.ReactElement<IListingCardProps> {
+    const panelPosition = !this.props.panelPosition && this.props.panelPosition !== 0
+      ? PanelPosition.Right : this.props.panelPosition;
     return (
       <div className="col s4 m4">
         <div className="card large light-blue darken-2">
@@ -49,7 +84,27 @@ export default class ListingCard extends React.Component<IListingCardProps, ILis
               <div className="col s6 m6 l6">Fag:</div><div className="col s6 m6 l6">{this.props.Listing.avCustomFag}</div>
             </div>
           </div>
+          <div className="card-action">
+            <a href="#" onClick={this.openApplication.bind(this)}>Meld din interesse</a>
+          </div>
         </div>
+        <Panel isOpen={this.state.isOpen} position={panelPosition} onDismiss={this.onPanelClosed.bind(this)}>
+          <div className="table">
+            <h2>{this.props.Listing.Title}</h2>
+            <div className="row">
+              <div className="col s12 m12 l12">Ja! Jeg vil melde min interesse for dette prosjektet.</div>
+            </div>
+            <div className="row buttonRow">
+              <div className="col s12 m12 l12"> <PrimaryButton disabled={this.state.sendMessage.length > 0} text="Send inn forespørsel" onClick={this.sendApplication.bind(this)} /></div>
+            </div>
+            <div className="row buttonRow">
+              <div className="col s12 m12 l12">{this.state.sendMessage}</div>
+            </div>
+            {/* <div className="row buttonRow">
+              <div className="col s12 m12 l12">{this.context}</div>
+            </div> */}
+          </div>
+        </Panel>
       </div>
     );
   }

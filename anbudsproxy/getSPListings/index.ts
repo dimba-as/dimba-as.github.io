@@ -2,6 +2,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 const SPFetchClient = require("@pnp/nodejs-commonjs").SPFetchClient;
 const connectSPO = require("../shared/connectSPO");
+
 import { sp } from "@pnp/sp-commonjs";
 
 
@@ -13,18 +14,24 @@ const getSPListings: AzureFunction = async function (context: Context, req: Http
         Querytext: "ContentTypeId:0x0100EA4AF1BB52A44A48B0A8D8EBDE86B2F900826E760165E09246A64BC70214D36943 avPublisert:1 avPubliseringsniva<>Skjult",
         RowLimit: 10,
         SelectProperties:[
-         "Title",
-        "avCustomFag",
-        "avCustomAnbudsbeskrivelse",
-        "avPublisert",
-        "avPubliseringsniva",
-        "avAnbudsfristOWSDATE",
-        "avOppstartAarOWSNMBR",
-        "avOppstartsperiodeOWSCHCS",
-        "avFerdigstillelseperiodeOWSCHCS",
-        "avFerdigstillelseAarOWSNMBR",
-        "avAdresseOWSTEXT",
-        "avOppstartAarOWSNMBR"
+            "Title",
+            "avCustomFag",
+            "avCustomAnbudsbeskrivelse",
+            "avPublisert",
+            "avPubliseringsniva",
+            "avAnbudsfristOWSDATE",
+            "avOppstartAarOWSNMBR",
+            "avOppstartsperiodeOWSCHCS",
+            "avFerdigstillelseperiodeOWSCHCS",
+            "avFerdigstillelseAarOWSNMBR",
+            "avAdresseOWSTEXT",
+            "avOppstartAarOWSNMBR",
+            "Path",
+            "WebId",
+            "ListId",
+            "SPSiteUrl",
+            "ListItemID"
+
     ],
         EnableInterleaving: true
     });

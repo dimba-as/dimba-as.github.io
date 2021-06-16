@@ -10,6 +10,7 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'SpListingsWebPartStrings';
 import SpListings from './components/SpListings';
 import { ISpListingsProps } from './components/ISpListingsProps';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
 
 export interface ISpListingsWebPartProps {
   description: string;
@@ -21,7 +22,7 @@ export default class SpListingsWebPart extends BaseClientSideWebPart<ISpListings
     const element: React.ReactElement<ISpListingsProps> = React.createElement(
       SpListings,
       {
-        description: this.properties.description
+        context:this.context
       }
     );
 

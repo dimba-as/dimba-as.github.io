@@ -8,4 +8,7 @@ export class Listing {
     public avFerdigstillelseperiodeOWSCHCS: string;
     public avFerdigstillelseAarOWSNMBR: number;
     public avAdresseOWSTEXT: string;
+    public SPSiteUrl: string;
+    public ListItemID: string;
+    public ListId: string;
   }
