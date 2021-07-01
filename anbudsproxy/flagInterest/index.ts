@@ -15,7 +15,7 @@ const flagInterest: AzureFunction = async function (context: Context, req: HttpR
     const token = await getToken(context);
     const graphUser = await getUserFromGraph(context, token, from);
     const user = await sp.web.ensureUser(from);
-    const results = await sp.web.lists.getByTitle("Foresporsler").items.add({Title:displayName,AnbudId:listItemId, avPersonId:user.data.Id});
+    const results = await sp.web.lists.getByTitle("Foresporsler").items.add({Title:displayName,avAnbudId:listItemId, avPersonId:user.data.Id});
 
     if (results) {
         context.res = {

@@ -18,7 +18,7 @@ module.exports = async function getUserFromGraph(context, token, user) {
                 if (!error) {
                     resolve(JSON.parse(body));
                     return;
-                } else {
+                } else { 
                     reject(`Error in getChannelId: ${error}`);
                 }
 
