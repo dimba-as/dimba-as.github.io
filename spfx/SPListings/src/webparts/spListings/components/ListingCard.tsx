@@ -8,6 +8,7 @@ import { PrimaryButton } from '@fluentui/react';
 import { flagInterest, getSPListings } from '../../../apiHelper';
 import { fromPairs } from 'lodash';
 import { WebPartContext } from '@microsoft/sp-webpart-base';
+import { setup as pnpSetup } from "@pnp/common";
 
 
 export interface IListingCardProps {
@@ -33,10 +34,16 @@ export default class ListingCard extends React.Component<IListingCardProps, ILis
     });
   }
   private async sendApplication() {
+    const user = this.props.context.pageContext.user;
+  
+    let from = user.loginName;
+    // if(user.isExternalGuestUser){
+    //   from = from +" #EXT#@dimbaas.onmicrosoft.com";
+    // }
     const props = { webUrl: this.props.Listing.SPSiteUrl, 
       listItemId: this.props.Listing.ListItemID, 
       listId: this.props.Listing.ListId, 
-      from: this.props.context.pageContext.user.loginName, 
+      from: from,
       displayName: this.props.context.pageContext.user.displayName };
     const res = await flagInterest(props);
 

@@ -2,7 +2,7 @@ import * as request from 'request';
 module.exports = async function getUserFromGraph(context, token, user) {
     return new Promise((resolve, reject) => {
 
-        const url = `https://graph.microsoft.com/v1.0/users/${user}`;
+        const url = `https://graph.microsoft.com/v1.0/users/?$filter=mail eq '${user}'&$select=CompanyName,id`;
         try {
 
             request.get(url, {

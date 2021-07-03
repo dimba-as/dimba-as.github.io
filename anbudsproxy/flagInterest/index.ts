@@ -13,10 +13,16 @@ const flagInterest: AzureFunction = async function (context: Context, req: HttpR
     const displayName = req.body.displayName;
     await connectSPO(webUrl);
     const token = await getToken(context);
-    const graphUser = await getUserFromGraph(context, token, from);
-    const user = await sp.web.ensureUser(from);
-    const results = await sp.web.lists.getByTitle("Foresporsler").items.add({Title:displayName,avAnbudId:listItemId, avPersonId:user.data.Id});
+    const graphUsers = await getUserFromGraph(context, token, from);
+    let graphUserCompany = "";
+    if(graphUsers && graphUsers.value && graphUsers.value.length===1 ){
+        graphUserCompany = graphUsers.value[0].companyName;
+    }
+    const ensuredUser = await sp.web.ensureUser(from);
+    const user = await sp.web.siteUsers.getByLoginName(from);
+    const results = await sp.web.lists.getByTitle("Foresporsler").items.add({Title:displayName,avSelskap:graphUserCompany,avAnbudId:listItemId, avPersonId:19});
 
+    
     if (results) {
         context.res = {
             // status: 200, /* Defaults to 200 */ 
