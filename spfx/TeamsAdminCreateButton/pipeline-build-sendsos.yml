@@ -1,0 +1,32 @@
+trigger:
+  branches:
+    include: ['master', 'dev']
+  paths:
+    include: ['stortinget_spfx/stortinget_extension_SendVPEpost']
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+  displayName: 'npm install and build'
+  workingDirectory: 'stortinget_spfx/stortinget_extension_SendVPEpost'
+
+- script: |
+    gulp clean
+    gulp bundle --ship --$(Build.SourceBranchName)
+    gulp package-solution --ship
+  displayName: 'Build and package the solution'
+  workingDirectory: 'stortinget_spfx/stortinget_extension_SendVPEpost'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.SourcesDirectory)/stortinget_spfx/stortinget_extension_SendVPEpost/sharepoint/solution/TeamsAdminCreateButton.sppkg' 
+    artifactName: 'stortinget_extension_SendVPEpost' 
+  displayName: 'Publish build SPFx artifacts'

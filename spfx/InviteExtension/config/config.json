@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "invite-extension-command-set": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/inviteExtension/InviteExtensionCommandSet.js",
+          "manifest": "./src/extensions/inviteExtension/InviteExtensionCommandSet.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "InviteExtensionCommandSetStrings": "lib/extensions/inviteExtension/loc/{locale}.js"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "credit-check-button-field-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/creditCheckButton/CreditCheckButtonFieldCustomizer.js",
+          "manifest": "./src/extensions/creditCheckButton/CreditCheckButtonFieldCustomizer.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CreditCheckButtonFieldCustomizerStrings": "lib/extensions/creditCheckButton/loc/{locale}.js"
+  }
+}

@@ -8,7 +8,6 @@ import { PrimaryButton } from '@fluentui/react';
 import { flagInterest, getSPListings } from '../../../apiHelper';
 import { fromPairs } from 'lodash';
 import { WebPartContext } from '@microsoft/sp-webpart-base';
-import { setup as pnpSetup } from "@pnp/common";
 
 
 export interface IListingCardProps {
@@ -20,13 +19,14 @@ export interface IListingCardProps {
 export interface IListingCardState {
   isOpen?: boolean;
   sendMessage?: string;
+  sending: boolean;
 }
 
 export default class ListingCard extends React.Component<IListingCardProps, IListingCardState> {
 
   constructor(props: IListingCardProps) {
     super(props);
-    this.state = { sendMessage: "" };
+    this.state = { sendMessage: "", sending: false };
   }
   private openApplication() {
     this.setState({
@@ -35,16 +35,16 @@ export default class ListingCard extends React.Component<IListingCardProps, ILis
   }
   private async sendApplication() {
     const user = this.props.context.pageContext.user;
-  
+    this.setState({ sending: true });
     let from = user.loginName;
-    // if(user.isExternalGuestUser){
-    //   from = from +" #EXT#@dimbaas.onmicrosoft.com";
-    // }
-    const props = { webUrl: this.props.Listing.SPSiteUrl, 
-      listItemId: this.props.Listing.ListItemID, 
-      listId: this.props.Listing.ListId, 
+
+
+    const props = {
+      webUrl: this.props.Listing.SPSiteUrl,
+      listItemId: this.props.Listing.ListItemID,
       from: from,
-      displayName: this.props.context.pageContext.user.displayName };
+      displayName: this.props.context.pageContext.user.displayName
+    };
     const res = await flagInterest(props);
 
     this.setState({
@@ -54,7 +54,7 @@ export default class ListingCard extends React.Component<IListingCardProps, ILis
   }
   private onPanelClosed() {
     this.setState({
-      isOpen: false, sendMessage: ""
+      isOpen: false, sendMessage: "", sending: false
     });
   }
   public render(): React.ReactElement<IListingCardProps> {
@@ -101,11 +101,17 @@ export default class ListingCard extends React.Component<IListingCardProps, ILis
             <div className="row">
               <div className="col s12 m12 l12">Ja! Jeg vil melde min interesse for dette prosjektet.</div>
             </div>
-            <div className="row buttonRow">
-              <div className="col s12 m12 l12"> <PrimaryButton disabled={this.state.sendMessage.length > 0} text="Send inn forespørsel" onClick={this.sendApplication.bind(this)} /></div>
+            <div className="row">
+              <div className="col s12 m12 l12">&nbsp;</div>
+            </div>
+            <div className="row">
+              <div className="col s12 m12 l12">&nbsp;</div>
             </div>
             <div className="row buttonRow">
-              <div className="col s12 m12 l12">{this.state.sendMessage}</div>
+              <div className="col s12 m12 l12"> <PrimaryButton disabled={this.state.sending} text="Send inn forespørsel" onClick={this.sendApplication.bind(this)} /></div>
+            </div>
+            <div className="row buttonRow">
+              <div className="col s12 m12 l12" style={{ padding: '20px' }}><h3>{this.state.sendMessage}</h3></div>
             </div>
             {/* <div className="row buttonRow">
               <div className="col s12 m12 l12">{this.context}</div>

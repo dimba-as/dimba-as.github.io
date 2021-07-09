@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "createteam-field-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/sendbutton/CreateTeamFieldCustomizer.js",
+          "manifest": "./src/extensions/sendbutton/CreateTeamFieldCustomizer.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CreateTeamFieldCustomizerStrings": "lib/extensions/sendbutton/loc/{locale}.js"
+    
+  }
+}

@@ -1,0 +1,4 @@
+  {
+    "$schema": "https://developer.microsoft.com/json-schemas/sp/view-formatting.schema.json",
+    "additionalRowClass": "=if([$avAnbudsForesporsel] == 'Godkjent', 'sp-css-backgroundColor-successBackground50 sp-css-color-CornflowerBlueFont', if([$avAnbudsForesporsel] == 'Ny', 'sp-css-backgroundColor-neutralBackground' ,if([$avAnbudsForesporsel] == 'Avslått','sp-css-backgroundColor-errorBackground', '')))"
+  }

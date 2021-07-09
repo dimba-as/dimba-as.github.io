@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "TeamsAdminCreateButton",
+    "id": "6460469d-7299-41f9-aa8c-21093790da92",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "features": [
+      {
+        "title": "TeamsAdminCreateButton",
+        "description": "Deploys a button for creating Teams",
+        "id": "e740b0d2-94d8-411d-af9c-541595e195d0",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml"
+          ]
+        }
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/TeamsAdminCreateButton.sppkg"
+  }
+}

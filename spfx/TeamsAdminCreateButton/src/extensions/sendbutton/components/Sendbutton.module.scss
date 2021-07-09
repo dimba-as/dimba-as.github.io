@@ -1,0 +1,11 @@
+@import '~office-ui-fabric-react/dist/sass/References.scss';
+
+.Sendbutton {
+  .cell {
+    background-color: "[theme:themePrimary, default:#e5e5e5]";
+    display: 'inline-block';
+    //box-shadow: 5px 5px 5px rgba(186, 216, 10, .2); //sendt
+    //rgba(234, 67, 0, .2) ikke sendt
+    //rgba(255, 185, 0, .2); sendt på nytt
+  }
+}

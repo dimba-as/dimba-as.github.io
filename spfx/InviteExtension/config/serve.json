@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://dimbaas.sharepoint.com/sites/aviadoas/Lists/Foresporsler/AllItems.aspx",
+      "customActions": {
+        "1f24ac7b-149f-4bc2-a64a-ad1ef1a4c260": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "approveText": "Vil du godkjenne denne forespørselen?",
+            "denyText": "Vil du avslå denne forespørselen?"
+          }
+        }
+      }
+    },
+    "inviteExtension": {
+      "pageUrl": "https://dimbaas.sharepoint.com/sites/aviadoas/Lists/Foresporsler/AllItems.aspx",
+      "customActions": {
+        "1f24ac7b-149f-4bc2-a64a-ad1ef1a4c260": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "approveText": "Vil du godkjenne denne forespørselen?",
+            "denyText": "Vil du avslå denne forespørselen?"
+          }
+        }
+      }
+    }
+  }
+}

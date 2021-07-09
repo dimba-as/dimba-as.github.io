@@ -2,6 +2,10 @@ const SPFetchClient = require("@pnp/nodejs-commonjs").SPFetchClient;
 const sp = require("@pnp/sp-commonjs").sp;
 
 module.exports = async function connectSPO(url:string){
+    if(url.indexOf("/sites")>0){
+        url = "https://dimbaas.sharepoint.com/sites/aviadoas";
+    }
+   
    return sp.setup({
         sp: {
             fetchClientFactory: () => {

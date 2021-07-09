@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Field ID="{51e4224b-f719-40d9-ba30-d802d15dd299}"
+            Name="avCreditCheck"
+            DisplayName="CreditCheck"
+            Type="Text"
+            Required="FALSE"
+            Group="Dimba"
+            ClientSideComponentId="6e7f5c51-a596-470e-8bcd-014466a7ae96">
+    </Field>
+</Elements>

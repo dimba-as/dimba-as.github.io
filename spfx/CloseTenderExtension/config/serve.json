@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://dimbaas.sharepoint.com/sites/aviadoas/Lists/Anbud/AllItems.aspx",
+      "customActions": {
+        "7df1f42f-be4b-42c6-b63b-ddd6e97cd347": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "approveText": "Vil du godkjenne denne forespørselen?",
+            "denyText": "Vil du lukke dette anbudet?"
+          }
+        }
+      }
+    },
+    "closetenderExtension": {
+      "pageUrl": "https://dimbaas.sharepoint.com/sites/aviadoas/Lists/Anbud/AllItems.aspx",
+      "customActions": {
+        "7df1f42f-be4b-42c6-b63b-ddd6e97cd347": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "approveText": "Vil du godkjenne denne forespørselen?",
+            "denyText": "Vil du lukke dette anbudet?"
+          }
+        }
+      }
+    }
+  }
+}

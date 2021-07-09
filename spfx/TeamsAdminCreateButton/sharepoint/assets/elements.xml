@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Field ID="{63d50301-2485-4aa4-8036-abbda98f717c}"
+            Name="avCreateAction"
+            DisplayName="Opprett"
+            Type="Text"
+            Required="FALSE"
+            Group="Aviado"
+            ClientSideComponentId="cfce7528-0d21-4500-bd1c-44507e840086">
+    </Field>
+</Elements>
